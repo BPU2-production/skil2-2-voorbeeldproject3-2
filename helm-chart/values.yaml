@@ -8,28 +8,7 @@ image:
 service:
   type: NodePort
   port: 80
-  nodePort: 30080   # Choose a port in the 30000-32767 range
+  nodePort: 30080
 
 env:
   APP_ENV: production
-  DB_CONNECTION: mysql
-  DB_HOST: {{ include "skil2-2-voorbeeldproject3.db.fullname" . }}
-  DB_PORT: 3306
-  DB_DATABASE: good_database_name
-  DB_USERNAME: name_of_user
-  DB_PASSWORD: pass_sword
-
-database:
-  image:
-    repository: mysql
-    tag: 5.7
-    pullPolicy: IfNotPresent
-  service:
-    type: ClusterIP
-    port: 3306
-  env:
-    MYSQL_ROOT_PASSWORD: very_secure_root_password
-    MYSQL_DATABASE: good_database_name
-    MYSQL_USER: name_of_user
-    MYSQL_PASSWORD: pass_sword
-  replicaCount: 1
