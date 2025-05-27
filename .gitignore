@@ -1,8 +1,8 @@
 # Ignore everything
-*
+/*
 
 # But not these!
-!.gitignore
-!helm-chart/
-!helm-chart/**/*
+!/.gitignore
+!/helm-chart/
+!/helm-chart/**/*
 
