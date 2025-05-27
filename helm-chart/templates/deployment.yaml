@@ -23,14 +23,4 @@ spec:
 {{- end }}
           ports:
             - containerPort: 80
-          volumeMounts:
-            - name: storage
-              mountPath: /var/www/storage
-      volumes:
-        - name: storage
-          {{- if .Values.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ include "skil2-2-voorbeeldproject3.fullname" . }}-storage
-          {{- else }}
-          emptyDir: {}
-          {{- end }}
+         

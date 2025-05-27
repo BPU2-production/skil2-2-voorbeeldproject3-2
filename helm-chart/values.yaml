@@ -12,6 +12,3 @@ service:
 env:
   APP_ENV: production
 
-persistence:
-  enabled: true
-  size: 1Gi
