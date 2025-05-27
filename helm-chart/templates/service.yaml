@@ -7,5 +7,8 @@ spec:
   ports:
     - port: {{ .Values.service.port }}
       targetPort: 80
+      {{- if eq .Values.service.type "NodePort" }}
+      nodePort: {{ .Values.service.nodePort }}
+      {{- end }}
   selector:
     app: {{ include "skil2-2-voorbeeldproject3.name" . }}
