@@ -1,0 +1,6 @@
+apiVersion: v2
+name: skil2-2-voorbeeldproject3
+description: A Helm chart for skil2-2-voorbeeldproject3
+type: application
+version: 0.1.0
+appVersion: "1.0"

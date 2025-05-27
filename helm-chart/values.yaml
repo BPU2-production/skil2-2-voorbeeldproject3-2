@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: bpu2/skil2-2-voorbeeldproject3
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+env:
+  APP_ENV: production
+
+persistence:
+  enabled: true
+  size: 1Gi

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "skil2-2-voorbeeldproject3.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "skil2-2-voorbeeldproject3.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "skil2-2-voorbeeldproject3.name" . }}
+    spec:
+      containers:
+        - name: laravel
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+{{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: "{{ $value }}"
+{{- end }}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: storage
+              mountPath: /var/www/storage
+      volumes:
+        - name: storage
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ include "skil2-2-voorbeeldproject3.fullname" . }}-storage
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
