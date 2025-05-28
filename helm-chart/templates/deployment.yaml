@@ -17,9 +17,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: DB_HOST
+              value: {{ include "skil2-2-voorbeeldproject3.db.fullname" . }}
 {{- range $key, $value := .Values.env }}
+{{- if neq $key "DB_HOST" }}
             - name: {{ $key }}
               value: "{{ $value }}"
+{{- end }}
 {{- end }}
           ports:
             - containerPort: 80
