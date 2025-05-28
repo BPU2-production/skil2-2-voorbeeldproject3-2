@@ -20,7 +20,7 @@ spec:
             - name: DB_HOST
               value: {{ include "skil2-2-voorbeeldproject3.db.fullname" . }}
 {{- range $key, $value := .Values.env }}
-{{- if neq $key "DB_HOST" }}
+{{- if ne $key "DB_HOST" }}
             - name: {{ $key }}
               value: "{{ $value }}"
 {{- end }}
